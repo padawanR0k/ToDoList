@@ -1,0 +1,125 @@
+@charset "UTF-8";
+body {
+  background: mediumturquoise;
+}
+
+input::focus {
+  outline: none;
+}
+
+li::hover {
+  text-decoration: line-through;
+}
+
+.wrapper {
+  margin: 50px auto;
+  padding: 50px;
+  width: 500px;
+  background: #fff;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.199);
+}
+
+#input-todo {
+  border: 0;
+  border-bottom: 1px solid #181818;
+  margin: 30px 0px;
+  width: 500px;
+  height: 60px;
+  font-size: 30px;
+}
+
+.todolist {
+  font-size: 40px;
+  padding: 20px 10px;
+  text-align: left;
+  border-bottom: 1px solid #181818;
+  transition: all .3s;
+}
+
+.todolist .BtnTodo-Delete {
+  display: none;
+  float: right;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.todolist:hover {
+  background: #d6d6d66b;
+}
+
+.todolist:hover .BtnTodo-Delete {
+  display: inline;
+}
+
+#input-todo:focus {
+  outline: none;
+}
+
+.checkBox {
+  width: 50px;
+  font-size: 50px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.checkBox::before {
+  content: "";
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  border: 5px solid #2a9e64;
+  top: -15px;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.checkBox:checked::before {
+  content: "✔️";
+  font-size: 20px;
+  background: #fff;
+}
+
+#todo-list {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.utilBtns {
+  margin: 20px 0px;
+}
+
+.utilBtns button {
+  position: relative;
+  margin: 0px 10px;
+  padding: 5px 10px;
+  font-size: 30px;
+  border: 1px solid #181818;
+  cursor: pointer;
+  box-shadow: 5px 5px 0px #000;
+}
+
+.utilBtns button#Btn_select-All {
+  background: none;
+}
+
+.utilBtns button#Btn_select-Delete {
+  background: none;
+}
+
+.utilBtns button:focus {
+  outline: none;
+}
+
+.utilBtns button:active {
+  top: 6px;
+  left: 6px;
+  box-shadow: 0px 0px 0px #000;
+  background: #ff0;
+}
+/*# sourceMappingURL=style.css.map */
