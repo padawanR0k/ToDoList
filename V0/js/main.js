@@ -6,47 +6,30 @@ var todos = [];
 
 // html을 그려주는 코드로 todos 추가,삭제시 매번 실행할 함수
 function Repaint(e) {
-  var html = '';
+  todo.innerHTML = '';
   return todos.map(function(item) {
     var completedChk = item.completed ? 'checked' : '';
-    html += '<li class="todolist" value="' ;
-    html += item.id ;
-    html += '"><input type="checkbox" class="checkBox" ';
-    html += completedChk;
-    html += '>' ;
-    html += '<span class="todoText" contenteditable="true">';
-    html += item.content;
-    html += '</span>';
-    html += '<button class="BtnTodo-Delete" type="button">❌</button>';
-    html += '</li>';
-    todo.innerHTML = html;
+    todo.innerHTML +=
+      '<li class="todolist" value="' +
+      item.id +
+      '"><input type="checkbox" class="checkBox" ' +
+      completedChk +
+      '>' +
+      '<span class="todoText" contenteditable="true">' +
+      item.content +
+      '</span>' +
+      '<button class="BtnTodo-Delete" type="button">❌</button></li>';
   });
 }
 
-function selectAlltodo() {
-  todos.forEach(function(item) {
-    item.completed = true;
-  });
-}
-
-function deleteSelected() {
-  todos = todos.filter(function(item) {
-    return item.completed !== true;
-  });
-}
-
-function edit(target) {
-  target.contentEditable = true;
-}
-
-function editCompleted(editTarget) {
-  editTarget.contentEditable = 'false';
-  todos.forEach(function(item) {
-    if (e.target.parentNode.value === item.id) item.content = editTarget.innerText;
-  });
-  editTarget.contentEditable = true;
-}
-
+window.addEventListener('load', function(e) {
+  todos = [
+    { id: 1, content: 'Javascript', completed: false },
+    { id: 2, content: 'CSS', completed: false },
+    { id: 3, content: 'HTML', completed: false }
+  ];
+  Repaint(e);
+});
 
 // todos 요소 추가
 inputbox.addEventListener('keyup', function(e) {
@@ -62,61 +45,53 @@ inputbox.addEventListener('keyup', function(e) {
   }
 });
 
-function btnTodo(todo) {
-  todos = todos.filter(function(item) {
-    return item.id !== todo.parentNode.value;
-  });
-}
-
-function checkTodo(todo) {
-  todos.forEach(function(item) {
-    if (item.id === todo.parentNode.value) item.completed = !item.completed;
-  });
-}
-
 // todos 자식들 이벤트
 todo.addEventListener('click', function(e) {
   var checkBox = e.target.children;
-  // 삭제버튼?
   if (e.target.nodeName === 'BUTTON') {
-    btnTodo(e.target);
+    todos = todos.filter(function(item) {
+      return item.id !== e.target.parentNode.value;
+    });
     Repaint(e);
   } else if (e.target.nodeName === 'INPUT') {
-    // 체크박스
-    checkTodo(e.target);
+    todos.forEach(function(item) {
+      if (item.id === e.target.parentNode.value)
+        item.completed = !item.completed;
+    });
     Repaint(e);
   } else if (e.target.nodeName === 'SPAN') {
     edit(e.target);
   }
 });
 
-
-
+function edit(target) {
+  target.contentEditable = true;
+}
 // todo 수정할때 이벤트리스너
 todo.addEventListener('keypress', function(e) {
   if (e.keyCode === 13 && e.target.innerText !== '') {
-    editCompleted(e.target);
+    e.target.contentEditable = 'false';
+    todos.forEach(function(item) {
+      if (e.target.parentNode.value === item.id)
+        item.content = e.target.innerText;
+    });
+    e.target.contentEditable = 'true';
   }
+  console.log(todos);
 });
-
 
 // selectAll
 selectAll.addEventListener('click', function(e) {
-  selectAlltodo();
+  todos.forEach(function(item) {
+    item.completed = true;
+  });
   Repaint(e);
 });
 
 // 선택리스트삭제
 someDelete.addEventListener('click', function(e) {
-  deleteSelected();
-  Repaint(e);
-});
-
-window.addEventListener('load', function(e) {
-  todos = [
-    { id: 1, content: 'Javascript', completed: false },
-    { id: 2, content: 'CSS', completed: false },
-    { id: 3, content: 'HTML', completed: false }
-  ];
+  todos = todos.filter(function(item) {
+    return item.completed !== true;
+  });
   Repaint(e);
 });

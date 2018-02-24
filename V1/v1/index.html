@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Todos V1</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1 class="title">Todos</h1>
+        <ul class="filter_btn">
+          <li><button id="btn_select-all">All</button></li>
+          <li><button id="btn_select-active">active</button></li>
+          <li><button id="btn_select-completed">completed</button></li>
+        </ul>
+        <input id="input-todo" class="form-control input-lg" placeholder="What needs to be done?" autofocus style="margin-bottom: 30px;">
+        <ul id="todo-list" class="list-group">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
