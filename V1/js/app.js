@@ -4,11 +4,25 @@ var btnViewAll = document.getElementById('btn_select-all');
 var btnViewActive = document.getElementById('btn_select-active');
 var btnViewCompleted = document.getElementById('btn_select-completed');
 var foo = '';
-var todos = [
-  { id: 1, content:'1', completed: false},
-  { id: 2, content:'2', completed: true},
-  { id: 3, content:'3', completed: false}
-];
+var todos = [];
+
+// XMLHttpRequest 객체의 생성
+var req = new XMLHttpRequest();
+
+// 비동기 방식으로 Request를 오픈한다
+req.open('GET', '/webserver-express/public/data.json');
+// Request를 전송한다
+req.send();
+
+req.onreadystatechange = function () {
+  // 서버 응답 완료 && 정상 응답
+  if (req.readyState === XMLHttpRequest.DONE) {
+    if (req.status === 200) {
+      todos = JSON.parse(req.responseText);
+    }
+  }
+}
+
 
 function render(filter) {
   var html = '';
