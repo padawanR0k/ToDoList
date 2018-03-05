@@ -20,36 +20,35 @@ req.open('GET', '/webserver-express/public/data.json');
 // Request를 전송한다
 req.send();
 
-req.onreadystatechange = function () {
+req.onreadystatechange = function() {
   // 서버 응답 완료 && 정상 응답
   if (req.readyState === XMLHttpRequest.DONE) {
     if (req.status === 200) {
       todos = JSON.parse(req.responseText);
     }
   }
-}
-
+};
 
 function render(filter) {
   var html = '';
   var filteredTodos = [];
-  var leftedTodos =  0;
-  var completedTodos =  0;
+  var leftedTodos = 0;
+  var completedTodos = 0;
 
   if (!todos.length) {
     todo.innerHTML = '';
     return;
   }
 
-  if ( filter === 'ViewActive') {
+  if (filter === 'ViewActive') {
     filteredTodos = todos.filter(function(item) {
       return item.completed === false;
     });
-  }else if (filter === 'ViewCompleted') {
+  } else if (filter === 'ViewCompleted') {
     filteredTodos = todos.filter(function(item) {
       return item.completed === true;
     });
-  }else{
+  } else {
     filteredTodos = todos;
   }
 
@@ -60,10 +59,18 @@ function render(filter) {
     html += '<li class="list-group-item">';
     html += '<div class="hover-anchor">';
     html += '<a class="hover-action text-muted">';
-    html += '<span class="glyphicon glyphicon-remove-circle pull-right" data-id="' + dataID + '"></span>';
+    html +=
+      '<span class="glyphicon glyphicon-remove-circle pull-right" data-id="' +
+      dataID +
+      '"></span>';
     html += '</a>';
     html += '<label class="i-checks" for="' + dataID + '">';
-    html += '<input type="checkbox" class="checkBox" id="' + dataID + '" ' + checked + '><i></i>';
+    html +=
+      '<input type="checkbox" class="checkBox" id="' +
+      dataID +
+      '" ' +
+      checked +
+      '><i></i>';
     html += '<span>' + todo.content + '</span>';
     html += '</label>';
     html += '</div>';
@@ -71,7 +78,7 @@ function render(filter) {
   todo.innerHTML = html;
 
   // completed, lefted 갯수 확인
-  todos.map(function (item) {
+  todos.map(function(item) {
     item.completed ? completedTodos++ : leftedTodos++;
   });
   leftNum.innerHTML = leftedTodos;
@@ -80,16 +87,19 @@ function render(filter) {
 
 function addTodo(inputValue) {
   var newID = generateNewID() + 1;
-  todos = todos.concat([{ id: newID , content: inputValue, completed: false }]);
+  todos = todos.concat([{ id: newID, content: inputValue, completed: false }]);
 }
 
 function generateNewID() {
-  return Math.max.apply(null,todos.map(function (todo) {
-    return todo.id;
-  }));
+  return Math.max.apply(
+    null,
+    todos.map(function(todo) {
+      return todo.id;
+    })
+  );
 }
 
-function check (target) {
+function check(target) {
   todos.forEach(function(item) {
     if (item.id == target) item.completed = !item.completed;
   });
@@ -108,14 +118,14 @@ function deletTodo(deletedataId) {
 }
 
 function activeBtnPills(btn) {
-  for(var i = 0; i < navPill.length; i++) {
+  for (var i = 0; i < navPill.length; i++) {
     navPill[i].className = '';
   }
   btn.classList += 'active';
 }
 
 // 전부 체크 함수
-function toggleAllTodo (checkBoolean) {
+function toggleAllTodo(checkBoolean) {
   todos.forEach(function(item) {
     item.completed = checkBoolean;
   });
@@ -130,25 +140,25 @@ function clearDoneTodo() {
 }
 // 할일추가
 inputbox.addEventListener('keyup', function(e) {
-  if ( e.keyCode === 13 && this.value !== '' ) {
+  if (e.keyCode === 13 && this.value !== '') {
     addTodo(this.value);
     render(renderFilter);
     this.value = '';
   }
 });
 
-todo.addEventListener('click', function (e) {
+todo.addEventListener('click', function(e) {
   if (e.target.nodeName === 'LABEL') {
     check(e.target.getAttribute('for'));
-    if (todo.classList.length !== 1 ) {
+    if (todo.classList.length !== 1) {
       render(todo.classList[1]);
-    }else{
+    } else {
       render('ViewAll');
     }
   }
 });
 
-todo.addEventListener('click', function (e) {
+todo.addEventListener('click', function(e) {
   if (e.target.nodeName === 'SPAN') {
     var dataId = e.target.getAttribute('data-id');
     deletTodo(dataId);
@@ -157,7 +167,7 @@ todo.addEventListener('click', function (e) {
 });
 
 // 필터 : 전체
-btnViewAll.addEventListener('click', function (e) {
+btnViewAll.addEventListener('click', function(e) {
   activeBtnPills(e.target.parentNode);
   renderFilter = 'ViewAll';
   todo.classList = 'list-group';
@@ -165,7 +175,7 @@ btnViewAll.addEventListener('click', function (e) {
 });
 
 // 필터 : Active
-btnViewActive.addEventListener('click', function (e) {
+btnViewActive.addEventListener('click', function(e) {
   activeBtnPills(e.target.parentNode);
   renderFilter = 'ViewActive';
   todo.classList += ' ViewCompleted';
@@ -198,9 +208,6 @@ clearCompleted.addEventListener('click', function() {
   render(renderFilter);
 });
 
-
-
-window.addEventListener('load', function(){
+window.addEventListener('load', function() {
   render(renderFilter);
 });
-
