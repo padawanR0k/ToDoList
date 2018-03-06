@@ -3,9 +3,6 @@ import axios from 'axios';
 (function () {
   const todo = document.getElementById('todo-list');
   const inputbox = document.getElementById('input-todo');
-  const btnViewAll = document.getElementById('all');
-  const btnViewActive = document.getElementById('active');
-  const btnViewCompleted = document.getElementById('completed');
   const navPill = document.querySelectorAll('.nav-pills li');
   const nav = document.getElementsByClassName('nav-pills')[0];
   const btncheckAll = document.getElementById('chk-allComplete');
@@ -48,9 +45,7 @@ import axios from 'axios';
               </div>
             </li>`;
     });
-    completedTodos = todos.filter(item => {
-      return item.completed;
-    }).length;
+    completedTodos = todos.filter(item => item.completed).length;
     leftNum.innerHTML = todos.length - completedTodos;
     completedNum.innerHTML = completedTodos;
     todo.innerHTML = html;
@@ -71,7 +66,6 @@ import axios from 'axios';
     const newTodo = { id: generateNewID(), content, completed: false };
     axios.post('/todos', newTodo)
       .then(({ data }) => {
-
         todos = data;
         getTodos(state);
       })
