@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1 class="title">Todos</h1>
+      <ul class="nav nav-xs nav-pills">
+        <li *ngFor="let item of navPills" [class.active]="item === selecteditem">
+          <a (click)="changeState($event.target.text)" [innerHTML]="item"></a>
+        </li>
+      </ul>
+
+      <input class="form-control input-lg" placeholder="What needs to be done?" autofocus style="margin-bottom: 30px;" (keyup.enter)="addTodo($event.target.value)" [(ngModel)]="value">
+
+<app-todo-list [selecteditem]="selecteditem" [todos]="todos" (remove)="removeTodo($event)" (check)="checkId($event)"></app-todo-list>
+
+
+      <div class="col-xs-6">
+        <label style="padding-left: 20px">
+          <input type="checkbox" (click)="checkAll($event.target.checked)">
+          <i></i>
+          <span>Mark all as complete</span>
+        </label>
+      </div>
+      <div class="col-xs-6 text-right">
+        <button class="btn btn-default btn-xs" (click)="clearAllCompleted()">Clear completed (
+          <span>{{ showCompltedLength() }} </span>)</button>
+        <strong>{{ showActiveLength() }}</strong> items left
+      </div>
+    </div>
+  </div>
+</div>
