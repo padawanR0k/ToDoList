@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1 class="title">Todos</h1>
+      <app-todo-filter [navPills]="navPills" [selecteditem]="selecteditem" (clickFilter)="changeState($event)"></app-todo-filter>
+      <app-todo-input [value]="value" [todos]="todos" (enter)="addTodo($event)"></app-todo-input>
+
+      <app-todo-list [selecteditem]="selecteditem" [todos]="todos" (remove)="removeTodo($event)" (check)="checkId($event)"></app-todo-list>
+
+      <app-todo-util (checkAll)="checkAll($event)" (clearAll)="clearAllCompleted($event)" [completedLength]="showCompltedLength()"
+[activeLength]="showActiveLength()"></app-todo-util>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<ul class="nav nav-xs nav-pills">
+  <li *ngFor="let item of navPills" [class.active]="item === selecteditem">
+    <a (click)="clickFilter.emit($event.target.text)" [innerHTML]="item"></a>
+  </li>
+</ul>
+
+

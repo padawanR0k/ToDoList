@@ -1,0 +1,15 @@
+<ul style="padding:0">
+<li class="list-group-item" *ngFor="let todo of todos | filterTodos:selecteditem" (click)="check.emit(todo.id)">
+
+
+    <div class="hover-anchor">
+      <a class="hover-action text-muted">
+        <span class="glyphicon glyphicon-remove-circle pull-right" data-id="1" (click)="remove.emit(todo.id)"></span>
+      </a>
+      <label class="i-checks" for="1">
+        <input type="checkbox" [id]="todo.id" [checked]="todo.completed"><i></i>
+        <span>{{ todo.content }}</span>
+      </label>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,12 @@
+<div class="col-xs-6">
+  <label style="padding-left: 20px">
+    <input type="checkbox" (click)="checkAll.emit($event.target.checked)">
+    <i></i>
+    <span>Mark all as complete</span>
+  </label>
+</div>
+<div class="col-xs-6 text-right">
+  <button class="btn btn-default btn-xs" (click)="clearAll.emit()">Clear completed (
+    <span>{{ completedLength }} </span>)</button>
+  <strong>{{ activeLength }}</strong> items left
+</div>
