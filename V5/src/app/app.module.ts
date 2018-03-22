@@ -6,13 +6,22 @@ import { AppComponent } from './app.component';
 import { TodoFilterPipe } from './todo-filter.pipe';
 import { TodoContainerComponent } from './todos/todo-container.component';
 import { TodoFormComponent } from './todos/todo-form/todo-form.component';
+import { TodoNavComponent } from './todos/todo-nav/todo-nav.component';
+import { TodoListComponent } from './todos/todo-list/todo-list.component';
+import { TodoFooterComponent } from './todos/todo-footer/todo-footer.component';
+import { TooltipDirective } from './tooltip.directive';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoFilterPipe,
     TodoContainerComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    TodoNavComponent,
+    TodoListComponent,
+    TodoFooterComponent,
+    TooltipDirective,
   ],
   imports: [
     BrowserModule,

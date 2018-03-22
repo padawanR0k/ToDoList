@@ -2,23 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Todo } from '../todo.interface';
 
 @Component({
-  selector: 'todo-container',
+  selector: 'app-todo-container',
   templateUrl: './todo-container.component.html',
   styleUrls: ['./todo-container.component.css']
 })
 export class TodoContainerComponent implements OnInit {
   todos: Todo[];
-
-  // // todo 입력폼의 값
-  // content = '';
-  // navigation items
-  navItems = ['All', 'Active', 'Completed'];
+  selectedNavItem = 'All';
   // 선택된 navigation item
-  selectedNavItem: string;
 
   ngOnInit() {
     this.getTodos();
-    this.selectedNavItem = this.navItems[0];
   }
 
   getTodos() {
@@ -29,12 +23,12 @@ export class TodoContainerComponent implements OnInit {
     ];
   }
 
-  // addTodo() {
-  //   if (!this.content) { return; }
-  //   const newTodo = { id: this.lastTodoId(), content: this.content, completed: false };
-  //   this.todos = [newTodo, ...this.todos];
-  //   this.content = '';
-  // }
+  addTodo(content) {
+    this.todos = [
+      { id: this.lastTodoId(), content, completed: false },
+      ...this.todos
+    ];
+  }
 
   removeTodo(id: number) {
     this.todos = this.todos.filter(todo => todo.id !== id);
@@ -49,7 +43,9 @@ export class TodoContainerComponent implements OnInit {
     //   todo = todo.id === id ? Object.assign(todo, { completed: !todo.completed }) : todo;
     // });
     this.todos = this.todos.map(todo => {
-      return todo.id === id ? Object.assign(todo, { completed: !todo.completed }) : todo;
+      return todo.id === id
+        ? Object.assign(todo, { completed: !todo.completed })
+        : todo;
     });
   }
 
@@ -71,6 +67,8 @@ export class TodoContainerComponent implements OnInit {
   }
 
   lastTodoId(): number {
-    return this.todos.length ? Math.max(...this.todos.map(({ id }) => id)) + 1 : 1;
+    return this.todos.length
+      ? Math.max(...this.todos.map(({ id }) => id)) + 1
+      : 1;
   }
 }

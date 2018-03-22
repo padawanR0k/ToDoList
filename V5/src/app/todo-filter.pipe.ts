@@ -13,8 +13,7 @@ export class TodoFilterPipe implements PipeTransform {
       Active : todo.completed가 false인 것만 표시
       Completed : todo.completed가 true인 것만 표시
     */
-
-    if (!todos) return;
+    if (!todos) { return; }
 
     // 필터링된 todos를 반환한다
     return todos.filter(({completed}) => {

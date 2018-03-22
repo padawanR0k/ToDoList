@@ -2,6 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<todo-container></todo-container>`
+  template: `<app-todo-container></app-todo-container>`
 })
 export class AppComponent {}
