@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      
+      <h1 class="title">Todos</h1>
+      <ng-container *ngIf="todos">
+        <app-todo-form (addTodo)="addTodo($event)"></app-todo-form>
+
+        <app-todo-nav
+          [navItems]="navItems"
+          [selectedNavItem]="selectedNavItem"
+          (selectFilter)="setCurrentNavItem($event)"></app-todo-nav>
+
+        <app-todo-list
+          [selectedNavItem]="selectedNavItem"
+          [todos]="todos"
+          (removeTodo)="removeTodo($event)"
+          (toggleComplete)="toggleComplete($event)"
+        ></app-todo-list>
+
+        <app-todo-footer
+          (AllToggle)="toggleAllTodoAsComplete($event)"
+          [todos]="todos"
+          (removeCompletedTodos)="removeCompletedTodos($event)"
+          [CntCompleted]="getCntCompletedTodos()"
+          [CntActive]="getCntActiveTodos()"
+          ></app-todo-footer>
+      </ng-container>
+    </div>
+  </div>
+  <div class="box_cont">
+    <div class="box" tooltipText="위에서" positionOption="tooltip-top"></div>
+    <div class="box" tooltipText="아래서" positionOption="tooltip-bottom"></div>
+    <div class="box" tooltipText="왼쪽에서" positionOption="tooltip-left"></div>
+    <div class="box" tooltipText="오른쪽에서" positionOption="tooltip-right"></div>
+  </div>
+</div>
