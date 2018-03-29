@@ -1,0 +1,17 @@
+<div class="col-xs-6">
+  <label class="i-checks" style="padding-left: 20px">
+    <input type="checkbox" (change)="todoService.toggleAllTodoAsComplete($event.target.checked)">
+    <i></i>
+    <span>Mark all as complete</span>
+  </label>
+</div>
+<div class="col-xs-6 text-right">
+  <button class="btn btn-default btn-xs" (click)="todoService.removeCompletedTodos()">
+    Clear completed (
+    <span>{{ todoService.getCntCompletedTodos() }}</span>)
+  </button>
+  <strong>{{ todoService.getCntActiveTodos() }}</strong>
+  {{ todoService.getCntActiveTodos() > 1 ? 'items' : 'item' }} left
+</div>
+<div class="col-md-12" style="margin-top: 30px">
+</div>
