@@ -9,7 +9,6 @@ import { TodoFormComponent } from './todos/todo-form/todo-form.component';
 import { TodoNavComponent } from './todos/todo-nav/todo-nav.component';
 import { TodoListComponent } from './todos/todo-list/todo-list.component';
 import { TodoFooterComponent } from './todos/todo-footer/todo-footer.component';
-import { TooltipDirective } from './tooltip.directive';
 
 
 @NgModule({
@@ -21,7 +20,6 @@ import { TooltipDirective } from './tooltip.directive';
     TodoNavComponent,
     TodoListComponent,
     TodoFooterComponent,
-    TooltipDirective,
   ],
   imports: [
     BrowserModule,

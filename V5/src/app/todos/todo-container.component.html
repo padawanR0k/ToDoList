@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      
+
     <h1 class="title">Todos</h1>
 
       <app-todo-form (addTodo)="addTodo($event)"></app-todo-form>
@@ -18,16 +18,12 @@
       <app-todo-footer
         (AllToggle)="toggleAllTodoAsComplete($event)"
         [todos]="todos"
-        (removeCompletedTodos)="removeCompletedTodos($event)"
+        (removeCompletedTodos)="removeCompletedTodos()"
         [CntCompleted]="getCntCompletedTodos()"
         [CntActive]="getCntActiveTodos()"
         ></app-todo-footer>
     </div>
   </div>
   <div class="box_cont">
-        <div class="box tooltip-top" appTooltip></div>
-        <div class="box tooltip-bottom" appTooltip></div>
-        <div class="box tooltip-left" appTooltip></div>
-        <div class="box tooltip-right" appTooltip></div>
       </div>
 </div>
