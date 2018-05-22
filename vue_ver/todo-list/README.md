@@ -1,21 +1,13 @@
-# todo-list
+# 기능
+- 할 일 추가
+- 리스트 삭제
+- 리스트 선택
+- 선택 삭제
+- 전체 선택
+- 선택된 리스트들 삭제
 
-> A Vue.js project
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# 추가할 기능
+- 로그인
+- DB에서 리스트 주고 받기
+- CSS 애니메이션 추가
